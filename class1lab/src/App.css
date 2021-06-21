@@ -3,10 +3,10 @@ header{
   background-color: aqua;
 }
 
-main{
-  display: flex;
-}
 
+.container{
+  margin-bottom: 5rem;
+}
 .Horned_container{
   width: 50%;
   text-align: center;
@@ -35,4 +35,24 @@ footer{
 
 footer div{
   margin-top: 10px;
+}
+
+img{
+    width: 150px;
+    height: 200px;
+}
+.card{
+  display: inline-table;
+  margin: 10px;
+}
+
+span{
+    font-weight: bold;
+    float: right;
+    margin-top: 4px;
+}
+i{
+  float: right;
+  font-size: 1.3rem;
+  color: red;
 }
