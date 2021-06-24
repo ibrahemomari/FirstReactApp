@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import {Button,Modal} from 'react-bootstrap';
+import { Row,Form} from 'react-bootstrap';
+import Data from './Data.json';
 class HornedBeast extends Component {
     constructor(props) {
         super(props);
@@ -15,14 +17,11 @@ class HornedBeast extends Component {
         })
     }
 
-    handleModal() {
-        this.setState({
-            show: !this.state.show
-        })
-    }
+
 
     render() {
         return ( 
+            <>
             
             <div className="card">
             <div className="card-header">{this.props.title}</div>
@@ -46,8 +45,10 @@ class HornedBeast extends Component {
             </Modal>
         </div>
         </div>
+        </>
         )
     }
+    
 }
 
 export default HornedBeast
