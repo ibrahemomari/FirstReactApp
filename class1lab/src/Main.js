@@ -3,24 +3,25 @@ import HornedBeast from './HornedBeast'
 import Data from './Data.json'
 import { Row,Form,Button} from 'react-bootstrap';
 class Main extends Component {
-
+    constructor(){
+        super();
+        this.state={
+            horns:0
+        }
+    }
     likeCounter=(count)=>{
       return count+1;
     }
 
-    dublicate(){
-            let newArray=Data.map(el=>{
-                return el.horns
-            })
-            return [...new Set(newArray)];
-    }
+    
     selectedHorns(value){
-      Data.filter((el)=>{
-            if(el.horns==value){
-               return  <HornedBeast title={el.title}  description={el.description} img_url={el.image_url} count={0} countRequest={this.likeCounter} />;
-            }
+        this.setState({
+            horns:value
         })
-    }
+      }
+
+
+ 
     render() {
        
         return (
@@ -30,8 +31,8 @@ class Main extends Component {
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Fillter:</Form.Label>
-                    <Form.Control as="select" aria-label="Default select example" onChange={event=>{this.selectedHorns(event.target.value)}}>
-                        <option>Select Number Of Horns</option>
+                    <Form.Control as="select" aria-label="Default select example" onChange={event=>{this.selectedHorns(Number(event.target.value))}}>
+                        <option value="0">Select Number Of Horns</option>
                         <option value="1">1 Horn</option>
                         <option value="2">2 Horns</option>
                         <option value="3">3 Horns</option>
@@ -41,14 +42,22 @@ class Main extends Component {
                 </Form>
             </Row>
             <Row>
-              {
-                  Data.map(el=>
-                      <HornedBeast title={el.title}  description={el.description} img_url={el.image_url} count={0} countRequest={this.likeCounter} />
-                  )
-                  
-              }
+            {
+                Data.map((el,i)=>{
+                    return (
+                        (this.state.horns===el.horns && 
+                            <HornedBeast key={i} title={el.title}  description={el.description} img_url={el.image_url} count={0} countRequest={this.likeCounter} horns={el.horns} />
+                        ) || 
+                        (this.state.horns===0 && 
+                            <HornedBeast key={i} title={el.title}  description={el.description} img_url={el.image_url} count={0} countRequest={this.likeCounter} horns={el.horns} />
+                        )
+                    )
+                })
+                    
+                }
               
            
+            
               </Row>
             </main>
         )
